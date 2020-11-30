@@ -1,4 +1,12 @@
-## reCaptcha Google V2 in React - Step by step
+## Google ReCaptcha V2 API + React JS + Next Js
+
+<br>
+
+#### LIVE DEMO: https://recaptcha-api.vercel.app/
+
+<br>
+
+## Documentation - Step by step
 
 ### First step: Creating a new Tag
 
