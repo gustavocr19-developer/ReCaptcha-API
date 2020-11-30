@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/gustavocr19-developer/ReCaptcha-Test#readme",
   "dependencies": {
-    "dotenv": "^8.2.0",
     "formik": "^2.2.5",
     "next": "^10.0.3",
     "react": "^17.0.1",

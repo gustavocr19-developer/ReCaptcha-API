@@ -1,11 +1,11 @@
-import React, {useRef} from "react";
+import React, {useRef, useState} from "react";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import ReCAPTCHA from 'react-google-recaptcha'
-require('dotenv').config()
 
 const HomePage= ()=> {
 
   const refRef = useRef();
+  const [robot, setRobot] = useState('');
 
   return(
 
@@ -30,6 +30,7 @@ const HomePage= ()=> {
             const token = await refRef.current.executeAsync();
             refRef.current.reset()
 
+            setRobot('')
             const response = await fetch("/api/validate", {
               method: "POST",
               headers: {
@@ -45,8 +46,9 @@ const HomePage= ()=> {
             const data = await response.json();
             if (data.errors) {
               setServerErrors(data.errors);
+              setRobot(`You are a robot!!!`)
             } else {
-              console.log("success, redirect to home page");
+              setRobot(`You are not a robot!!!`)
             }
             setSubmitting(false);
   
@@ -54,6 +56,9 @@ const HomePage= ()=> {
           >
        {({ isSubmitting }) => (
          <Form>
+           {robot &&
+             <p>{robot}</p>
+           }
            <div className='homePage-formItem'>
              <Field type="email" name="email" placeholder='Email'/>
               <ErrorMessage name="email" component="div"/>
@@ -64,7 +69,7 @@ const HomePage= ()=> {
             <ErrorMessage name="password" component="div" />
            </div>
            <ReCAPTCHA 
-            sitekey={'6LdKnfIZAAAAABWBnVUJCVKqUljje0HLWRntn2RB'}
+            sitekey={process.env.NEXT_PUBLIC_SITE_KEY} 
             size="invisible"
             ref={refRef}
            />

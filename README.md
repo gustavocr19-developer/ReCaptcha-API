@@ -17,6 +17,8 @@
 
 ### Third step : Adding reCAPTCHA in your Front-end code
 
+#### ALL STEPS DESCRIBED IN THIS THIRD STEP, THERE ARE IN FOLDER PAGES/INDEX.JS
+
 - Run command:
   npm install --save react-google-recaptcha
 - In your code : import ReCAPTCHA from "react-google-recaptcha"
@@ -28,4 +30,12 @@
 - Send a variable token to backend in the body of the requisition with others that your form already has; Do this throught POST method (IMPORTANT)
 - Do not forget to pass your secret trhrought a enviroment variable, for security reasons;
 
-### Four step : Receiving token in the backend
+### Fourth step : Receiving token in the backend
+
+-Create a function validate human, which is in /pages/api;
+
+- Note that function can result only TRUE or FALSE.. If it's TRUE means that You're not a robot, then you can register form data. Else, if it's false means that You're a robot, then you must to block form data save proccess.
+- After that, work you function there you receive form data and save if it's TRUE;
+- Send a response to front end showing what's happen!
+
+### Now enjoy keep adding others features in your application ;)
